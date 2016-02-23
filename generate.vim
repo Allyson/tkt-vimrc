@@ -83,10 +83,10 @@ NeoBundle 'sherzberg/vim-bootstrap-updater'
 "" Custom bundles
 NeoBundle 'Valloric/YouCompleteMe', {
 	 \ 'build' : {
-     \     'mac' : './install.sh --clang-completer --system-libclang --omnisharp-completer',
-     \     'unix' : './install.sh --clang-completer --system-libclang --omnisharp-completer',
-     \     'windows' : './install.sh --clang-completer --system-libclang --omnisharp-completer',
-     \     'cygwin' : './install.sh --clang-completer --system-libclang --omnisharp-completer',
+     \     'mac' : './install.py --clang-completer --omnisharp-completer',
+     \     'unix' : './install.py --clang-completer --omnisharp-completer',
+     \     'windows' : './install.py --clang-completer --system-libclang --omnisharp-completer',
+     \     'cygwin' : './install.p --clang-completer --system-libclang --omnisharp-completer',
      \	 },
 	 \ }
 
