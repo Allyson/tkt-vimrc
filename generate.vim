@@ -74,12 +74,21 @@ endif
 NeoBundle 'honza/vim-snippets'
 
 "" Color
-NeoBundle 'tomasr/molokai'
+" NeoBundle 'tomasr/molokai'
+NeoBundle 'altercation/vim-colors-solarized'
 
 "" Vim-Bootstrap Updater
 NeoBundle 'sherzberg/vim-bootstrap-updater'
 
 "" Custom bundles
+NeoBundle 'Valloric/YouCompleteMe', {
+	 \ 'build' : {
+     \     'mac' : './install.sh --clang-completer --system-libclang --omnisharp-completer',
+     \     'unix' : './install.sh --clang-completer --system-libclang --omnisharp-completer',
+     \     'windows' : './install.sh --clang-completer --system-libclang --omnisharp-completer',
+     \     'cygwin' : './install.sh --clang-completer --system-libclang --omnisharp-completer',
+     \	 },
+	 \ }
 
 "" Python Bundle
 NeoBundle "davidhalter/jedi-vim"
@@ -161,7 +170,9 @@ set number
 
 let no_buffers_menu=1
 if !exists('g:not_finsh_neobundle')
-  colorscheme molokai
+" colorscheme molokai
+  set background=dark
+  colorscheme solarized
 endif
 
 set mousemodel=popup
