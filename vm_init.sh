@@ -1,3 +1,5 @@
+#!/bin/bash
+
 apt-get install -y build-essential python-virtualen git cmake python-dev
 curl -sL https://deb.nodesource.com/setup | bash -
 apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 7F0CEB10
