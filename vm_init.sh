@@ -1,11 +1,13 @@
 #!/bin/bash
 
+NEW_SSH_PORT=2324
+
 apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 7F0CEB10
 echo "deb http://repo.mongodb.org/apt/ubuntu "$(lsb_release -sc)"/mongodb-org/3.0 multiverse" | tee /etc/apt/sources.list.d/mongodb-org-3.0.list
 curl -sL https://deb.nodesource.com/setup_5.x | bash -
 sudo apt-get update
 
-apt-get install -y build-essential cmake python-virtualenv cmake python-dev
+apt-get install -y build-essential cmake python-virtualenv cmake python-dev bc
 apt-get install -y nodejs
 apt-get install -y mongodb-org
 apt-get install -y ntp
@@ -20,7 +22,16 @@ then
 fi
 
 #	Changes ssh port to 2324
-sed -i.bak 's/\(Port\s*\)\([0-9]\+\)/# \1\2\n\12324/gm' /etc/ssh/sshd_config
+SSH_PORT=$(awk '/^Port\s+/{print $NF}' /etc/ssh/sshd_config)
+
+echo "SSH_PORT: ${SSH_PORT} - NEW_SSH_PORT: ${NEW_SSH_PORT}"
+
+if [ ${SSH_PORT} -eq ${NEW_SSH_PORT} ]
+then
+	echo "***** ssh Port already ${NEW_SSH_PORT}. Nothing done"
+else
+	sed -i.bak 's/^\(Port\s*\)\([0-9]\+\)/# \1\2\n\12324/gm' /etc/ssh/sshd_config
+fi
 
 #	This should be done to fix missing locale on mongodb
 #
@@ -32,3 +43,13 @@ then
 else
 	echo '***** LC_ALL already configured *****'
 fi
+
+npm install -g pm2
+#
+#	Configure firewall
+#
+ufw allow ${NEW_SSH_PORT}/tcp
+ufw allow 80/tcp
+ufw allow 443/tcp
+ufw enable
+
