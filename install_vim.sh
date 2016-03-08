@@ -22,6 +22,9 @@ if [ -e ~/.vimrc ]; then
 fi
 
 rm -rf ~/.vim*
+
+sudo apt-get install python-dev
+
 cp ./generate.vim ~/.vimrc
 cp ./.vimrc.local ~/
 vim +NeoBundleInstall +qall
