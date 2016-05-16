@@ -28,3 +28,7 @@ sudo apt-get install python-dev
 cp ./generate.vim ~/.vimrc
 cp ./.vimrc.local ~/
 vim +NeoBundleInstall +qall
+
+mkdir ~/.vim/plugin/
+cp ./cscope_maps.vim ~/.vim/plugin/
+
