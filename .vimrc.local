@@ -8,3 +8,13 @@ set tags=tags;
 
 highlight ColorColumn ctermbg=black
 set colorcolumn=80 
+
+" Save fold state of a file automatically
+set foldmethod=syntax
+au BufWinLeave * mkview
+au BufWinEnter * silent loadview
+
+
+" Custom keymaps
+noremap <C-n> :cn<CR>
+noremap <C-p> :cp<CR>
