@@ -1,4 +1,4 @@
-# Taka Vimrc
+# Vimrc
 
 This is a vim installation bundle based on Vim Bootstrap
 with some personal customizations.
